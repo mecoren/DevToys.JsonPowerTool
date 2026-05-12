@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+
+  <data name="ShortDisplayTitle" xml:space="preserve">
+    <value>JSON 增强工具</value>
+  </data>
+  <data name="LongDisplayTitle" xml:space="preserve">
+    <value>JSON 增强工具</value>
+  </data>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>全功能 JSON 编辑与转换工具</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>美化、压缩、排序、查询 JSON，以及生成实体类</value>
+  </data>
+
+  <!-- Mode names -->
+  <data name="ModeBeautify" xml:space="preserve">
+    <value>美化</value>
+  </data>
+  <data name="ModeMinify" xml:space="preserve">
+    <value>压缩</value>
+  </data>
+  <data name="ModeTreeView" xml:space="preserve">
+    <value>树形视图</value>
+  </data>
+  <data name="ModeTableView" xml:space="preserve">
+    <value>表格视图</value>
+  </data>
+  <data name="ModeQuery" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="ModeEntityConvert" xml:space="preserve">
+    <value>实体类</value>
+  </data>
+  <data name="ModeSort" xml:space="preserve">
+    <value>排序</value>
+  </data>
+
+  <!-- Button labels -->
+  <data name="SortAscendingButton" xml:space="preserve">
+    <value>升序排序</value>
+  </data>
+  <data name="SortDescendingButton" xml:space="preserve">
+    <value>降序排序</value>
+  </data>
+
+  <!-- Labels -->
+  <data name="InputTitle" xml:space="preserve">
+    <value>输入</value>
+  </data>
+  <data name="OutputTitle" xml:space="preserve">
+    <value>输出</value>
+  </data>
+  <data name="QueryExpressionTitle" xml:space="preserve">
+    <value>查询表达式</value>
+  </data>
+  <data name="QueryLanguageJsonPath" xml:space="preserve">
+    <value>JSONPath</value>
+  </data>
+  <data name="QueryLanguageJMESPath" xml:space="preserve">
+    <value>JMESPath</value>
+  </data>
+  <data name="EntityLanguageLabel" xml:space="preserve">
+    <value>目标语言</value>
+  </data>
+  <data name="SelectedNodePath" xml:space="preserve">
+    <value>路径</value>
+  </data>
+  <data name="SelectedNodeValue" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="TableViewNotApplicable" xml:space="preserve">
+    <value>仅当顶层 JSON 为同构对象数组时，才支持表格视图。</value>
+  </data>
+  <data name="NoMatchesFound" xml:space="preserve">
+    <value>未找到匹配项。</value>
+  </data>
+
+  <!-- Error messages -->
+  <data name="JsonParseError" xml:space="preserve">
+    <value>JSON 解析错误</value>
+  </data>
+  <data name="QueryResultTitle" xml:space="preserve">
+    <value>查询结果</value>
+  </data>
+  <data name="GeneratedCodeTitle" xml:space="preserve">
+    <value>生成代码</value>
+  </data>
+  <data name="SortedJsonTitle" xml:space="preserve">
+    <value>排序结果</value>
+  </data>
+  <data name="QueryLanguageLabel" xml:space="preserve">
+    <value>查询语言</value>
+  </data>
+  <data name="SortDirectionLabel" xml:space="preserve">
+    <value>排序方向</value>
+  </data>
+  <data name="SortDirectionAscending" xml:space="preserve">
+    <value>升序 (A → Z)</value>
+  </data>
+  <data name="SortDirectionDescending" xml:space="preserve">
+    <value>降序 (Z → A)</value>
+  </data>
+  <data name="LineLabel" xml:space="preserve">
+    <value>行</value>
+  </data>
+  <data name="ColumnLabel" xml:space="preserve">
+    <value>列</value>
+  </data>
+  <data name="InfoLabel" xml:space="preserve">
+    <value>提示</value>
+  </data>
+</root>

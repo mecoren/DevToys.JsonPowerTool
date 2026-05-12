@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>DevToys.JsonPowerTool</RootNamespace>
+    <AssemblyName>DevToys.JsonPowerTool</AssemblyName>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <IsPackable>true</IsPackable>
+    <PackageId>DevToys.JsonPowerTool</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>JsonPowerTool</Authors>
+    <Description>A full-featured JSON tool plugin for DevToys 2.0</Description>
+    <PackageTags>devtoys-app</PackageTags>
+    <IncludeContentInPack>false</IncludeContentInPack>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevToys.Api" Version="2.0.10-preview" />
+    <PackageReference Include="JsonPath.Net" Version="1.0.4" />
+    <PackageReference Include="JmesPath.Net" Version="1.0.125" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!-- Include all output files (including dependency DLLs) in the NuGet package -->
+  <Target Name="IncludeAllFilesInTargetDir" BeforeTargets="_GetPackageFiles">
+    <ItemGroup>
+      <None Include="$(OutputPath)\**">
+        <Pack>true</Pack>
+        <PackagePath>lib\net8.0</PackagePath>
+      </None>
+    </ItemGroup>
+  </Target>
+
+</Project>
