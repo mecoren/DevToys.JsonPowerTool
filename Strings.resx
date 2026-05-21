@@ -44,7 +44,7 @@
     <value>全功能 JSON 编辑与转换工具</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>美化、压缩、排序、查询 JSON，以及生成实体类</value>
+    <value>美化、压缩、排序、查询 JSON，生成实体类，自动识别 XML 并转换为 JSON</value>
   </data>
 
   <!-- Mode names -->
@@ -143,5 +143,16 @@
   </data>
   <data name="InfoLabel" xml:space="preserve">
     <value>提示</value>
+  </data>
+
+  <!-- XML to JSON -->
+  <data name="ModeXmlToJson" xml:space="preserve">
+    <value>XML 转 JSON</value>
+  </data>
+  <data name="XmlToJsonOutputTitle" xml:space="preserve">
+    <value>JSON 输出</value>
+  </data>
+  <data name="XmlParseError" xml:space="preserve">
+    <value>XML 解析错误</value>
   </data>
 </root>

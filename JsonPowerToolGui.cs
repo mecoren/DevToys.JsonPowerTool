@@ -19,6 +19,7 @@ namespace DevToys.JsonPowerTool;
     DescriptionResourceName = nameof(Strings.Description),
     AccessibleNameResourceName = nameof(Strings.AccessibleName))]
 [AcceptedDataTypeName(PredefinedCommonDataTypeNames.Json)]
+[AcceptedDataTypeName(PredefinedCommonDataTypeNames.Xml)]
 internal sealed class JsonPowerToolGui : IGuiTool
 {
     // --- UI component references ---
@@ -404,55 +405,71 @@ internal sealed class JsonPowerToolGui : IGuiTool
             return;
         }
 
-        // Validate JSON first
+        // First, try JSON validation
         var validationError = JsonProcessor.Validate(input);
-        if (validationError != null)
-        {
-            string errorMsg = validationError.Message;
-            if (validationError.Line > 0)
-                errorMsg += $" ({Strings.LineLabel} {validationError.Line}, {Strings.ColumnLabel} {validationError.Column})";
 
-            ShowErrorInOutput(errorMsg);
+        if (validationError == null)
+        {
+            // Input is valid JSON — process according to current mode
+            _inputEditor.Language("json");
+            try
+            {
+                switch (_currentMode)
+                {
+                    case JsonProcessingMode.Beautify:
+                        _outputEditor.Text(JsonProcessor.Beautify(input));
+                        break;
+                    case JsonProcessingMode.Minify:
+                        _outputEditor.Text(JsonProcessor.Minify(input));
+                        break;
+                    case JsonProcessingMode.TreeView:
+                        UpdateTreeView(input);
+                        break;
+                    case JsonProcessingMode.TableView:
+                        UpdateTableView(input);
+                        break;
+                    case JsonProcessingMode.Query:
+                        ExecuteQuery(input);
+                        break;
+                    case JsonProcessingMode.EntityConvert:
+                        GenerateEntity(input);
+                        break;
+                    case JsonProcessingMode.Sort:
+                        UpdateSortOutput(input);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowErrorInOutput(ex.Message);
+            }
             return;
         }
 
-        try
+        // Not valid JSON — try to auto-detect XML and convert
+        var xmlError = JsonProcessor.ValidateXml(input);
+        if (xmlError == null)
         {
-            switch (_currentMode)
+            // Input is valid XML — auto-convert to JSON
+            _inputEditor.Language("xml");
+            try
             {
-                case JsonProcessingMode.Beautify:
-                    _outputEditor.Text(JsonProcessor.Beautify(input));
-                    break;
-
-                case JsonProcessingMode.Minify:
-                    _outputEditor.Text(JsonProcessor.Minify(input));
-                    break;
-
-                case JsonProcessingMode.TreeView:
-                    UpdateTreeView(input);
-                    break;
-
-                case JsonProcessingMode.TableView:
-                    UpdateTableView(input);
-                    break;
-
-                case JsonProcessingMode.Query:
-                    ExecuteQuery(input);
-                    break;
-
-                case JsonProcessingMode.EntityConvert:
-                    GenerateEntity(input);
-                    break;
-
-                case JsonProcessingMode.Sort:
-                    UpdateSortOutput(input);
-                    break;
+                string json = JsonProcessor.XmlToJson(input);
+                _outputEditor.Text(json);
             }
+            catch (Exception ex)
+            {
+                _outputEditor.Text($"❌ {Strings.XmlParseError}\n\n{ex.Message}");
+            }
+            return;
         }
-        catch (Exception ex)
-        {
-            ShowErrorInOutput(ex.Message);
-        }
+
+        // Neither valid JSON nor valid XML — show JSON error
+        string errorMsg = validationError.Message;
+        if (validationError.Line > 0)
+            errorMsg += $" ({Strings.LineLabel} {validationError.Line}, {Strings.ColumnLabel} {validationError.Column})";
+
+        ShowErrorInOutput(errorMsg);
     }
 
     private void ShowErrorInOutput(string errorMsg)

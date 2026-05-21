@@ -1,5 +1,7 @@
+using System.Text;
 using System.Text.Json;
-using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace DevToys.JsonPowerTool.Helpers;
 
@@ -161,6 +163,37 @@ internal static class JsonProcessor
     {
         using JsonDocument doc = JsonDocument.Parse(json, DocumentOptions);
         return BuildNode("$", doc.RootElement, "$");
+    }
+
+    /// <summary>
+    /// Converts XML string to JSON string using Newtonsoft.Json.
+    /// Returns the pretty-printed JSON, or throws on invalid XML.
+    /// </summary>
+    public static string XmlToJson(string xml)
+    {
+        XDocument xdoc = XDocument.Parse(xml);
+        string json = Newtonsoft.Json.JsonConvert.SerializeXNode(xdoc, Newtonsoft.Json.Formatting.Indented);
+        return json;
+    }
+
+    /// <summary>
+    /// Validates XML and returns error information if invalid.
+    /// </summary>
+    public static JsonValidationError? ValidateXml(string xml)
+    {
+        try
+        {
+            XDocument.Parse(xml);
+            return null;
+        }
+        catch (XmlException ex)
+        {
+            return new JsonValidationError(
+                ex.Message,
+                ex.LineNumber > 0 ? ex.LineNumber : -1,
+                ex.LinePosition > 0 ? ex.LinePosition : -1
+            );
+        }
     }
 
     /// <summary>

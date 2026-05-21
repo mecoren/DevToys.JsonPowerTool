@@ -250,5 +250,23 @@ namespace DevToys.JsonPowerTool {
                 return ResourceManager.GetString("InfoLabel", resourceCulture);
             }
         }
+        
+        internal static string ModeXmlToJson {
+            get {
+                return ResourceManager.GetString("ModeXmlToJson", resourceCulture);
+            }
+        }
+        
+        internal static string XmlToJsonOutputTitle {
+            get {
+                return ResourceManager.GetString("XmlToJsonOutputTitle", resourceCulture);
+            }
+        }
+        
+        internal static string XmlParseError {
+            get {
+                return ResourceManager.GetString("XmlParseError", resourceCulture);
+            }
+        }
     }
 }
